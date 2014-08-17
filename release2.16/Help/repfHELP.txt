@@ -1,0 +1,61 @@
+% ============
+% Description:
+% ============
+%
+% 
+% This is the main function for repeated functional data modeling. 
+%
+%
+% ======
+% Usage:
+% ======
+%
+% Input:
+% design: 0 regular dense design
+%         1 irregular or sparse design
+% Xmat: the data array n*tn*m for design =0, set it to [] for design = 1;
+% y: 1*n cell, y{i} values corresponding to t{i} for design =1, set to [] for design =0;
+% t: 1*n cell, t{i} is a 2*ni matrix, contains all pairs (s,t) for subject
+%      i, set to [] for design =0;
+% out1: the grid for s, length(out1) = m, for design =0;  
+%       for design =1, out1 = unique(tt(1,:)), tt = cell2mat(t);
+% out2: the grid for t, length(out2) = tn for design =0;
+%       for design =0, out2 = unique(tt(2,:)), tt= cell2mat(t);
+% ngrid: the number of grids for t, when estimating xcov.
+% mu: length(out2)*length(out1) matrix, the user provided mean surface.
+%     If it is [], then empirical esitmator will be used for design =0, and
+%     smoothing estimator for design =1;
+% xcov: ngrid*ngrid*length(out1), the user provided covaraince surfaces.
+%       If it is [], then empirical estimator will be used for design =0,
+%       and smoothing estimator for design =1;
+% K: the user provided number of components for the first step FPCA
+% FVE_threshold: for choosing the number of components, if K is not provided
+% param_xi: the parameters for the second FPCA
+% bwphi: the bandwidth for the addtional smoothing for phi(t|s), in the case that empirical cov is used. 
+%        If no addtional smoothing is wanted, set it to []. 
+% bwmu: the bandwidth for smoothing mu; set to [] if not needed.
+% bwxcov: the bandwith for smoothing xcov; set to [] if not needed.
+
+% Output:
+% K: the number of FPC components chosen for the first step FPCA
+% pk: the number of FPC components chosen for the second step FPCA based on
+%     the working process $\xi_k(s)$.
+% P:  the max of pk.
+% FVEk: the FVE explained. 
+% out1: the grid for s.
+% out2: the grid for t.
+% mu: the estimated mean function of X(t,s)
+% xcov: the estimated covariance function, cov(X(t1,s), X(t2,s))
+% xi_all(n, m, K): the FPC scores from the first step FPCA, used as working
+%                  processes for the second step FPCA. 
+% xi_pred: the predicted values of xi_all, after fitting the second step FPCA. 
+% phi_all: the eigen functions from the first step FPCA, 
+%          phi_all(.,s, k) is the eigen functions 
+% lambda_all: the eigen values from the first step FPCA, 
+%          lambda_all(s,k) is the kth eigen value from FPCA of $X_i(., s)$.
+% zeta(n, P,K): the eigen value from the second step FPCA, 
+% psi_all(m, P,K): the eigenfunctions from the second step FPCA
+% predysurface: the predicted X_i(t,s).
+
+% Reference: Chen K and Mueller HG (2012) Modeling repeated functional
+% observatsion.

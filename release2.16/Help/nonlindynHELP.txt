@@ -1,0 +1,82 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 LucidaGrande;\f2\fswiss\fcharset0 ArialMT;
+\f3\fnil\fcharset0 Verdana;\f4\froman\fcharset0 Times-Roman;\f5\fnil\fcharset136 STHeitiTC-Light;
+}
+{\colortbl;\red255\green255\blue255;\red26\green26\blue26;\red255\green255\blue255;\red14\green14\blue14;
+\red109\green109\blue109;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 ============\
+Description:\
+============\
+\
+This is the main function to 
+\f1\fs28 \cf2 \cb3 obtain nonlinear, data-adaptive dynamic equations from the observed longitudinal processes. The dynamic equation is numerically estimated  via  smoothing-based procedure on the pre-smoothed trajectories and derivatives
+\f0\fs24 \cf0 \cb1 . \
+dimensional data is implemented with distance-based metric Multidimensional Scaling,\
+mapping high-dimensional data to locations on a real interval, such that predictors that\
+are close in a suitable sample metric also are located close to each other on the interval. \
+Established techniques from Functional Data Analysis can\
+be applied for further statistical analysis once an underlying stochastic process and the\
+corresponding random trajectory for each subject have been identified. \
+\
+Reference: 
+\f2\fs26 \cf2 \cb3  Nicolas Verzelen,\'a0 Wenwen Tao,\'a0 and\'a0Hans-Georg M\'fcller\
+\pard\pardeftab720\sl280
+
+\f3\fs22 \cf4 Inferring stochastic dynamics from functional data\
+\pard\pardeftab720
+
+\f4\fs24 \cf5 Biometrika
+\f3\fs18 \'a0
+\f4\fs24 (2012)\'a099(3):\'a0533-550\'a0first published online\'a0July 9, 2012\'a0doi:10.1093/biomet/ass015
+\f3\fs22 \cf4 \
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 \cb1 \
+\
+========\
+Usage:\
+========\
+\
+[mu,dyn_grid]=non_dyn(t,y,method,tout,N_f)\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 =======\
+Input:\
+=======\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0  t              :1 * N cell of observed time points. Need to be coherent for all subjects\
+y              :1 * N cell of observed repeated measurements for each subject, corresponding to each cell of t.\
+method    :a character string for the kernel to be used, default is 'gauss'
+\f5 ; should be specified as one of the following
+\f0 \
+                 'epan' - epanechikov kernel\
+                 'gauss' - gaussian kernel\
+                 'gausvar' - variant of gaussian kernel\
+                 'rect' - rectangular kernel\
+                 'quar' - quartic kernel\
+tout          : m * 1 vector of the output time grid ; default is equadistance 1*100 grid between min(t\{1\}) and max(t\{1\}).               \
+N_f           :scalar that gives the output size of trajectory y grid; default is 200.\
+\
+\
+\
+Details: i) Any unspecified or optional arguments can be set to "[]" for\
+            default values;\
+\
+=======\
+Output:\
+=======\
+\
+\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 mu              :m * N_f matrix of the estimated dynamic surface on given time grid and trajectory grid (N_f equidistant grid on the support region)\
+dyn_grid     :m * N_f matrix of the output grid corresponding to mu.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+ \
+\
+ See example_non_dyn.m\
+}

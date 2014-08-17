@@ -1,0 +1,48 @@
+============
+Description:
+============
+
+            This program can be used for estimating the stickiness coefficient  
+            for sparsely observed longitudinal data.
+
+            
+            The population definition is given by
+            S_X=\frac{E[\{X(T_1)-\mu(T_1)\}\{X(T_2)-\mu(T_2)\}]}
+            {[\text{Var}\{X(T_1)-\mu(T_1)\}]^\frac{1}{2}[\text{Var}\{X(T_2)-\mu(T_2)\}]^\frac{1}{2}}
+            where $\mu(t)=E[X(t)]$ is the mean trajectory and $T_1$ and $T_2$ 
+            are independent random times, independent of the process $X$, 
+            that are uniformly distributed on $\mt.$ 
+            
+
+            Reference: 
+            Gottlieb, A. and M\"{u}ller, H.G. (2012). A Stickiness Coefficient 
+            for Longitudinal Data. Computational Statistics and Data
+            Analysis. Available online at http://dx.doi.org/10.1016/j.csda.2012.03.009
+            
+
+ ======
+ Usage:
+ ======
+
+      function [stickiness_coefficient] = stick(y, t, param_X)
+
+ ================
+ Input Arguments:
+ ================
+
+      Input y:          1*n cell array, y{i} is the vector of measurements for the
+                        ith subject, i=1,...,n. See PCA() for more details
+
+      Input t:          1*n cell array, t{i} is the vector of time points for the
+                        ith subject for which corresponding measurements y{i} are
+                        available, i=1,...,n. See PCA() for more details
+
+      param_X:          an object that is returned by setOptions() that sets the input
+                        arguments for FPCA() for X. (for default, set
+                        param_X = []). In paper param_X =
+                        setOptions('selection_k', 'FVE','FVE_threshold', 0.9);
+
+ =================
+ Output Arguments:  
+ =================  
+      stickiness_coefficient: estimated stickiness coefficient for X

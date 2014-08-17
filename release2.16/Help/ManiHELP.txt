@@ -1,0 +1,114 @@
+%=========== Description: ===========
+%
+% Main program to perform nonlinear dimension reduction via ISOMAP or
+% Penalized-ISOMAP, using geodesic distances and multi-dimensional
+% scaling techniques (the term maniMDS refers to manifold multidimensional scaling).
+%
+% Reference: Chen, D., M\"{u}ller, H.G. (2012). Nonlinear manifold
+    representations for functional data.  Annals of Statistics
+    40, 1--29.
+%================ Input Arguments: ================
+%
+%Input X: 	1*N cell array; X{i} is a 1*D_i vector with measurements for the ith
+% 		subject, i=1,...,N. 
+%
+%Input	T: 	1*N cell array; T{i} is a 1*D_i vector with the time location
+% 		measurements for the ith subject, i=1,...,N. 
+%
+%Input	datatype: integer 0-4, determining how the data is treated (dense/sparse)
+% 		0 - sparse, use PACE and special distance (Peng and M\"uller 2008)
+% 		1 - sparse, use PACE and L2 distance [default] 
+%		2 - regular/with missing data, use PACE and L2 distance
+%		3 - dense with noise/missing values, use local linear smoothing
+%		4 - dense and balanced, without noise
+%
+%Input d: 	integer, output dimension [default 3]
+%
+%Input t: 	vector, output time grid [default balanced with 30 points]
+%
+%Input method: string giving the method name
+% 		'isomap' - use ISOMAP (Tenenbaum, 2000)
+% 		'p-isomap' - penalized isomap
+%
+%Input kernel: string giving the kernel name
+% 		'quar' - quartic kernel
+% 		'epan' - epanechikov kernel
+% 		'gauss' - gaussian kernel
+% 		'gausvar' - variant of gaussian kernel
+% 		'rect' - rectangular kernel
+%
+%Input K:	integer indicating how many neighbors are used to find geodesic
+% 		distance
+%
+%Input h:	kernel bandwidth used to predict functional trajectories based on FMC
+% 
+%Input delta: truncation parameter used in penalized isomap.
+%
+%Input pace:	parameter used in PACE, see FPCA
+%
+%================ Output Arguments: ================
+%
+%Output Y:		estimated functional manifold components
+% 
+%Output Outliers:	0/1 indicator; 1 if the corresponding subject is outlier
+%
+%Output S:	 	a structure that contains Y, Outliers, Dis, t, N, M, X, T, X_pace,
+%			X_reg, datatype, d, method, K, h, delta, mse, kernel, FVE, mu, xi,
+%			phi, lambda.
+% 
+%			1) Y - N*d matrix of estimated functional manifold components
+%
+%			2) Outliers - 1*N logical indicating whether (1) or not (0) each 
+%					subject is an outlier
+%
+%			3) Dis - N*N matrix of estimated L2 distances between trajectories
+%
+%			4) t - 1*M row vector containing the output time grid
+%            
+%			5) N - integer, number of subjects
+%
+%			6) M - integer, number of timepoints in output time grid t
+%
+%			7) X - see the input of the same name
+%
+%			8) T - see the input of the same name
+%
+%			9) X_pace - cell obtained from FPCA(X,T,pace);
+%
+%			10) X_reg - N*M matrix containing estimated data trajectories 
+%					evaluated at regular time points
+%
+%			11) datatype - see the input of the same name
+%
+%			12) d - see the input of the same name
+%
+%			13) method - see the input of the same name
+%
+%			14) K - see the input of the same name
+%
+%			15) h - see the input of the same name
+%
+%			16) delta - see the input of the same name
+%
+%			17) mse - array containing estimated mean squared errors,
+%				 	obtained by 10-fold CV, for candidate values of 
+%					K, h, and delta. If these inputs each are set to [],
+%					the default results in 5*5*10 array (see par10cv.m).
+%
+%			18) kernel - see the input of the same name
+%
+%			19) FVE - numeric fraction of variance explained (more accurately, 
+%					fraction of dimension explained)
+%
+%			20) mu - 1*M vector, mean trajectory corresponding to output X_reg
+%
+%			21) xi - N*d matrix, predictions for first d random PC coefficients, 
+%					obtained from output X_reg
+%
+%			22) phi - M*d matrix, estimated eigenfunctions, obtained from output X_reg,
+%					corresponding to the largest d eigenvalues
+%
+%			23) lambda - 1*d matrix, first d estimated eigenvalues (variances of PC scores)
+%					obtained from output X_reg
+%
+%%%% see example_Mani.m
