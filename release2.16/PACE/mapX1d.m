@@ -14,6 +14,9 @@ function [newy] = mapX1d(x,y,newx)
          warning('Extrapolation occured')
      end
      newy = interp1(x, y, newx, 'linear', 'extrap');
+     if (size(y, 2) == 1)
+         newy = newy';
+     end
      
 %      if size(y,1) == 1
 %         newy = y(loc);

@@ -33,6 +33,7 @@ function [xi_est, xi_var,y_predOrig]=getScores1(y, t, mu, phi, lambda, sigma, si
          C = LAMBDA-A*(LAMBDA*phiSub')';
          for i = 1:ncohort
             xi_var{i} = C;
+            xi_var{i} = (xi_var{i} + xi_var{i}') / 2;
          end     
 
       else
@@ -53,6 +54,7 @@ function [xi_est, xi_var,y_predOrig]=getScores1(y, t, mu, phi, lambda, sigma, si
 		  A = LAMBDA*phii'*pinv(phii*LAMBDA*phii'+error0);
                   xi_est(i,:)=(A*(yi-mu_i)')';
                   xi_var{i}=LAMBDA-A*(LAMBDA*phii')';
+                  xi_var{i} = (xi_var{i} + xi_var{i}') / 2;
 	        elseif strcmp(method,'IN')
                   m=length(yi); 
                   for k=1:noeig         
@@ -82,6 +84,7 @@ function [xi_est, xi_var,y_predOrig]=getScores1(y, t, mu, phi, lambda, sigma, si
           C = LAMBDA-A*(LAMBDA*phiSub')';
           for i = 1:ncohort
     	     xi_var{i} = C;
+             xi_var{i} = (xi_var{i} + xi_var{i}') / 2;
           end
       else
           y_predOrig = cell(1,ncohort);
@@ -98,6 +101,7 @@ function [xi_est, xi_var,y_predOrig]=getScores1(y, t, mu, phi, lambda, sigma, si
 			 A = LAMBDA*phii'*pinv(phii*LAMBDA*phii');
 		         xi_est(i,:)=(A*(yi-mu_i)')';
 		         xi_var{i}=LAMBDA-A*(LAMBDA*phii')';
+                 xi_var{i} = (xi_var{i} + xi_var{i}') / 2;
 	         elseif strcmp(method,'IN')
 		         for k=1:noeig
 		            prod=(yi-mu_i).*phii(:,k)';

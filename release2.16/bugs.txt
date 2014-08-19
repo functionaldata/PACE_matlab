@@ -10,3 +10,5 @@
 
 
 % cv_common should always return a scaler: the larger bandwidth is chosen.
+
+% FIXED getScores1: xi_var{i} is garanteed to be symmetric
