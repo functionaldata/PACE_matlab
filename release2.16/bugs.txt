@@ -1,14 +1,19 @@
+Fixed:
+% FIXED mapX1d.m: now it correctly takes care of interpolation case (and expterpolation).
+
+% FIXED getScores1: xi_var{i} is garanteed to be symmetric
+
+% cv_common should always return a scaler: the larger bandwidth is chosen.
+
+
+TODO: 
 % BUG in PACE: control cannot be set to 'look'
         p1=setOptions('selection_k',K,'regular', regular,'kernel', ...
         kernel, 'numBins',0,'newdata',out1,'error', error_type,'screePlot',0, ...
         'rho', rho, 'ngrid', ngrid, 'verbose', verbose);
 		
-% FIXED mapX1d.m: now it correctly takes care of interpolation case (and expterpolation).
-
 % ?: The scores obtained by FPCA do not agree with those obtained by getScores
 
+% The lwls function should not restrict xou to be sorted
 
 
-% cv_common should always return a scaler: the larger bandwidth is chosen.
-
-% FIXED getScores1: xi_var{i} is garanteed to be symmetric
