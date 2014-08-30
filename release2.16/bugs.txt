@@ -1,10 +1,11 @@
 Fixed:
-% FIXED mapX1d.m: now it correctly takes care of interpolation case (and expterpolation).
+% mapX1d.m: now it correctly takes care of interpolation case (and expterpolation).
 
-% FIXED getScores1: xi_var{i} is garanteed to be symmetric
+% getScores1: xi_var{i} is garanteed to be symmetric
 
 % cv_common should always return a scaler: the larger bandwidth is chosen.
 
+% PCA.m 606: the input of linspace is garanteed to be double
 
 TODO: 
 % BUG in PACE: control cannot be set to 'look'

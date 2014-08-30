@@ -603,7 +603,7 @@ yy = cell2mat(y);  % 1 x N vector to hold the observed measurements from all sub
 %corresponds to the unique "newdata".
 
 out1 =unique([tt newdata]);
-out21 = linspace(min(out1),max(out1),ngrid);
+out21 = linspace(double(min(out1)), double(max(out1)), ngrid);
 
 if designPlot == 1
     createDesignPlot(t, 0, 1, 1, yname);
