@@ -1,0 +1,3 @@
+We need to find a reasonable loss function: relative difference/absolute difference/squared difference. This depends a lot on the applications.
+
+Error = 1 does not seem to result in a good eigenvalue estimate.

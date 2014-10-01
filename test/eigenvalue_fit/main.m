@@ -1,8 +1,9 @@
 % 
+tic
 no_eig = 5;
 K_true = 50;
-M = 10;
-n_train = 5000;
+M = 4000;
+n_train = 50;
 n_test = 0;
 n_total = n_train + n_test;
 shift = 0;
@@ -26,8 +27,10 @@ if (isunix)
 end
 
 rng(seed);
-ev_trunc = nan * ones(M, no_eig);
-ev_fit = ev_trunc;
+ev_trunc1 = nan * ones(M, no_eig);
+ev_fit1 = ev_trunc1;
+ev_trunc0 = ev_trunc1;
+ev_fit0 = ev_trunc1;
 for (mc = 1:M)
     mc
     [Y, group] = sim_obs(n_total, 1/2, lambda_true, lambda_true, ...
@@ -44,12 +47,20 @@ for (mc = 1:M)
     p1=setOptions('selection_k', K_max, 'regular', regular, 'method', method, 'kernel', ...
     kernel, 'numBins', 0, 'newdata', out1_t, 'error', error_type, 'screePlot', 0, ...
     'rho', rho, 'verbose', verbose);
+    p0=setOptions('selection_k', K_max, 'regular', regular, 'method', method, 'kernel', ...
+    kernel, 'numBins', 0, 'newdata', out1_t, 'error', 0, 'screePlot', 0, ...
+    'rho', rho, 'verbose', verbose);
 
-    [ev_trunc(mc, :), ev_fit(mc, :)] = myEigenvalues(dat_thin, t_thin, no_eig, p1);
+    [ev_trunc1(mc, :), ev_fit1(mc, :)] = myEigenvalues(dat_thin, t_thin, no_eig, p1);
+    [ev_trunc0(mc, :), ev_fit0(mc, :)] = myEigenvalues(dat_thin, t_thin, no_eig, p0);
         
 end
+time_elapsed = toc;
 
-mean(abs(relDiff(ev_trunc, lambda_true(1:no_eig))))
-mean(abs(relDiff(ev_fit, lambda_true(1:no_eig))))
+mean(abs(relDiff(ev_trunc1, lambda_true(1:no_eig))))
+mean(abs(relDiff(ev_fit1, lambda_true(1:no_eig))))
+var(abs(relDiff(ev_fit1, lambda_true(1:no_eig)))) / sqrt(40)
+mean(ev_trunc0) - lambda_true(1:no_eig)
+mean(ev_fit0) - lambda_true(1:no_eig)
 
 save()

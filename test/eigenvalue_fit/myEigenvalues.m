@@ -21,7 +21,7 @@ else
     model = LinearModel.fit(X, y, 'Intercept', false);
 end
 
-ev_fit = double(model.Coefficients(:, 1))';
+ev_fit = table2array(model.Coefficients(:, 1))';
 % plot(tmp{4}(:, 2))
 
 end
