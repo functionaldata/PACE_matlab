@@ -57,10 +57,24 @@ for (mc = 1:M)
 end
 time_elapsed = toc;
 
-mean(abs(relDiff(ev_trunc1, lambda_true(1:no_eig))))
-mean(abs(relDiff(ev_fit1, lambda_true(1:no_eig))))
-var(abs(relDiff(ev_fit1, lambda_true(1:no_eig)))) / sqrt(40)
-mean(ev_trunc0) - lambda_true(1:no_eig)
-mean(ev_fit0) - lambda_true(1:no_eig)
+
+
+
+% mean(abs(relDiff(ev_trunc1, lambda_true(1:no_eig))))
+% mean(abs(relDiff(ev_fit1, lambda_true(1:no_eig))))
+% std(abs(relDiff(ev_fit1, lambda_true(1:no_eig)))) / sqrt(M)
+
+mean(ev_trunc1)
+mean(ev_trunc0)
+lambda_true(1:no_eig)
+mean(ev_fit1)
+mean(ev_fit0)
+std(ev_trunc1) / sqrt(M)
+std(ev_trunc0) / sqrt(M)
+std(ev_fit1) / sqrt(M)
+std(ev_fit0) / sqrt(M)
+
+% mean(ev_trunc0) - lambda_true(1:no_eig)
+% mean(ev_fit0) - lambda_true(1:no_eig)
 
 save()
