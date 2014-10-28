@@ -1,0 +1,39 @@
+
+A. Using mean function: 0.5*t^2 + 1.5*sin(10*t) + cos(20*t) on [0,1] (features a valley)
+
+	Using standard Trunc method, the bias for the first 5 eigenvalues are
+	
+	   -0.0790   -0.0250   -0.0125   -0.0201   -0.0229
+
+	and the corresponding std dev/sqrt(1000) are
+	
+	    0.0074    0.0024    0.0014    0.0009    0.0005
+
+
+	Similarly, when using true mean function, the bias are
+	
+	    0.0754    0.0235    0.0201    0.0011   -0.0086
+
+	and the std dev/sqrt(1000) are
+   
+	    0.0081    0.0024    0.0014    0.0009    0.0006
+
+
+A. Using mean function: 0.5*t^2 + -0.4*log(1+t) on [0,1] (mild)
+
+	Using standard Trunc method, the bias for the first 5 eigenvalues are
+	
+	   -0.0340   -0.0159   -0.0117   -0.0200   -0.0228
+
+	and the corresponding std dev/sqrt(1000) are
+	
+	    0.0076    0.0025    0.0014    0.0009    0.0005
+
+
+	Similarly, when using true mean function, the bias are
+	
+	    0.0879    0.0266    0.0180   -0.0007   -0.0093
+
+	and the std dev/sqrt(1000) are
+   
+	    0.0080    0.0025    0.0013    0.0009    0.0006

@@ -1,3 +1,7 @@
-We need to find a reasonable loss function: relative difference/absolute difference/squared difference. This depends a lot on the applications.
+We need to find a reasonable loss function: relative difference/absolute difference/squared difference. This depends a lot on the applications. Consider metrics on 1/lambda may be a good idea.
 
-Error = 1 does not seem to result in a good eigenvalue estimate.
+try true mean: use xmu
+look at the codes for measurment errors: only affect the diagonal. We probably
+need to modify the fit method for error 0
+
+Perhaps we should try MLE, but there is no available codes.

@@ -64,8 +64,9 @@ time_elapsed = toc;
 % mean(abs(relDiff(ev_fit1, lambda_true(1:no_eig))))
 % std(abs(relDiff(ev_fit1, lambda_true(1:no_eig)))) / sqrt(M)
 
-mean(ev_trunc1)
-mean(ev_trunc0)
+mean(ev_trunc1) - lambda_true(1:no_eig)
+mean(ev_fit1) - lambda_true(1:no_eig)
+
 lambda_true(1:no_eig)
 mean(ev_fit1)
 mean(ev_fit0)
@@ -73,6 +74,21 @@ std(ev_trunc1) / sqrt(M)
 std(ev_trunc0) / sqrt(M)
 std(ev_fit1) / sqrt(M)
 std(ev_fit0) / sqrt(M)
+
+% For many cases the fit method has smaller inverse MSE than the trunc
+% method, in particular the first two eigenvalues
+mean((1 ./ ev_trunc1 - ... 
+    ones(size(ev_trunc1, 1), 1) * (1 ./ lambda_true(1:no_eig))) .^ 2)
+std((1 ./ ev_trunc1 - ... 
+    ones(size(ev_trunc1, 1), 1) * (1 ./ lambda_true(1:no_eig))) .^ 2) / sqrt(M)    
+% mean(((1 ./ ev_trunc0) - ... 
+%     ones(size(ev_trunc1, 1), 1) * (1 ./ lambda_true(1:no_eig))) .^ 2)
+mean(((1 ./ ev_fit1) - ... 
+    ones(size(ev_fit1, 1), 1) * (1 ./ lambda_true(1:no_eig))) .^ 2)
+std((1 ./ ev_fit1 - ... 
+    ones(size(ev_fit1, 1), 1) * (1 ./ lambda_true(1:no_eig))) .^ 2) / sqrt(M)     
+% mean(((1 ./ ev_fit0) - ... 
+%     ones(size(ev_fit0, 1), 1) * (1 ./ lambda_true(1:no_eig))) .^ 2)
 
 % mean(ev_trunc0) - lambda_true(1:no_eig)
 % mean(ev_fit0) - lambda_true(1:no_eig)
