@@ -1,4 +1,11 @@
 ==========================
+New in PACE version 2.17:
+==========================
+(1) A new method for estimating the eigenvalues under the sparse case (regular=0) is added. This method uses the eigenfunctions obtained by smoothing the covariance matrix, and then uses least squares to regress the raw covariance on the eigenfunctions. 
+
+(2) Some minor bugs are fixed
+
+==========================
 New in PACE version 2.16:
 ==========================
 (1) A new package, PACE-repf that is designed to conduct a two-stage

@@ -1,7 +1,10 @@
-We need to find a reasonable loss function: relative difference/absolute difference/squared difference. This depends a lot on the applications. Consider metrics on 1/lambda may be a good idea.
+Add FVE for fit method.
 
-try true mean: use xmu
-look at the codes for measurment errors: only affect the diagonal. We probably
-need to modify the fit method for error 0
+Add fit method to PACE
+Add setOptions, modify showOptionsNames. 
 
-Perhaps we should try MLE, but there is no available codes.
+Put the functionality in PCA. 
+
+Do not increase the output fields in FPCA 
+
+The phi is on the grid out21, which is an equal-space version of out1. 

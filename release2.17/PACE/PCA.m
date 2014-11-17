@@ -1,3 +1,8 @@
+function [no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_xcov, xcovfit, AIC,BIC,FVE,y_pred, y_predOrig, y_predDense, out1,out21,...
+	  y,t, regular, rho_opt, sigmanew, mucopy, phicopy, eigencopy, out1copy, out21copy, xcovcopy, xcovfitcopy, xcorr, ops]... 
+         =PCA(y,t,bwmu,bwmu_gcv, bwxcov,bwxcov_gcv,ntest1,ngrid1,selection_k, FVE_threshold, maxk,...
+              control,regular,error,ngrid,method, ls_fit,shrink,newdata,kernel, numBins,yname, screePlot, designPlot, corrPlot, rho, verbose, xmu, xcov, method_mu, out_percent)
+
 %===========
 %Description:
 %===========
@@ -118,7 +123,10 @@
 %                 'IN': classical integration method
 %                 Note: 'CE' can be applied for sparse data or regular data, but
 %                       'IN' only in the case of regular data.
-%
+%Input ls_fit:    Use least-squares method to estimate the eigenvalues 
+%                 under regular. This method uses the eigenfunctions 
+%                 obtained by smoothing the covariance matrix, and then uses 
+%                 least squares to regress the raw covariance on the eigenfunctions. 
 %Input shrink:    indicator of whether applying shrinkage to estimates of random
 %                 coefficients (for regular data only)
 %                 0:  no shrinkage when method = 'CE' or error = 0 [Default]
@@ -378,12 +386,9 @@
 %                 errors.
 %                 if rho is set as -1, then sigmanew is set to the same as output
 %                 sigma.
+%Output ops:      all the options used.
 % See also FPCA, setOptions, showOptionNames, example
 
-function [no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_xcov, xcovfit, AIC,BIC,FVE,y_pred, y_predOrig, y_predDense, out1,out21,...
-	  y,t, regular, rho_opt, sigmanew, mucopy, phicopy, eigencopy, out1copy, out21copy, xcovcopy, xcovfitcopy, xcorr, ops]... 
-         =PCA(y,t,bwmu,bwmu_gcv, bwxcov,bwxcov_gcv,ntest1,ngrid1,selection_k, FVE_threshold, maxk,...
-              control,regular,error,ngrid,method,shrink,newdata,kernel, numBins,yname, screePlot, designPlot, corrPlot, rho, verbose, xmu, xcov, method_mu, out_percent)
 
      no_opt =[];sigma=[];lambda=[];phi=[];eigen=[];xi_est=[]; 
      xi_var=[];mu=[];muDense=[];bw_mu=[];bw_xcov=[];xcovfit=[];AIC=[];BIC=[];FVE=[];
@@ -450,6 +455,15 @@ if isempty(method)
     method = 'CE';   %method to estimate the PC score is through conditional expectation
 end
 
+if (isempty(ls_fit))
+    ls_fit = 0;
+end
+if (ls_fit == 1 && regular ~= 0)
+    warning('The LS fit method should be used only for sparse data')
+end
+if (ls_fit == 1 && ~isempty(xcov))
+    stop('Eigenvalues are known and need not to be estimated')
+end
 
 if shrink == 1 && (error ~= 1 || strcmp(method,'IN') ~= 1)
   fprintf(1,'Warning: shrinkage method only had effects when method = "IN" and error = 1 !Reset to shrink = 0 now!\n');
@@ -584,7 +598,7 @@ end
 
 ops = struct('bwmu', bwmu,'bwmu_gcv',bwmu_gcv, 'bwxcov',bwxcov,'bwxcov_gcv', bwxcov_gcv,'ntest1',ntest1,...
 	     'ngrid1',ngrid1,'selection_k',selection_k, 'FVE_threshold', FVE_threshold, 'maxk', maxk,...
-	     'control',control,'regular', regular,'error',error,'ngrid',ngrid,'method', method,'shrink',shrink,...
+	     'control',control,'regular', regular,'error',error,'ngrid',ngrid,'method', method, 'ls_fit', ls_fit, 'shrink',shrink,...
              'newdata',newdata,'kernel',kernel, 'numBins', numBins,'yname', yname, 'screePlot', screePlot,...
              'designPlot',designPlot,'corrPlot',corrPlot,'rho', rho,'verbose',verbose);
 
@@ -1036,6 +1050,23 @@ if strcmp(method_mu,'RARE') == 1    % this part modified by Wenwen
       end
 
 
+end
+
+% fit method 
+if (ls_fit)
+    ev_fit = fit_ev(rcov1, phi, out21, no_opt);
+    [ev_fit_sort, ord] = sort(ev_fit, 'descend');
+    if (sum(ev_fit_sort <= 0) > 0)
+        warning(sprintf('Setting %d negative eigenvalues to zero', sum(ev_fit_sort <= 0)))
+    end
+    lambda = ev_fit;
+    phi = phi(:, ord);
+    eigen = eigen(:, ord);
+    xi_est = xi_est(:, ord);
+    reord = @(x) x(ord, ord);
+    xi_var = cellfun(reord, xi_var, 'UniformOutput', false);
+    lam_old = [FVE(1), diff(FVE)];
+    FVE = cumsum(lam_old(ord));
 end
 
 %Save these copies for internal use in the FPCreg(), where the time points are guarantteed
