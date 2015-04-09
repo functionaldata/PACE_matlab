@@ -1,4 +1,6 @@
 Fixed:
+% createDesignPlot: now correctly handle isIndicator=1 and number of observations=0
+
 % mapX1d.m: now it correctly takes care of interpolation case (and expterpolation).
 
 % getScores1: xi_var{i} is garanteed to be symmetric
@@ -6,6 +8,7 @@ Fixed:
 % cv_common should always return a scaler: the larger bandwidth is chosen.
 
 % PCA.m 606: the input of linspace is garanteed to be double
+
 
 TODO: 
 % BUG in PACE: control cannot be set to 'look'

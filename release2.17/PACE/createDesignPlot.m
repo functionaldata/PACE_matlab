@@ -67,7 +67,7 @@ function createColorPlot(res, out1)
 end
 
 function [col] = searchCol(val) 
-
+        
    if val == 1
        col = 'r';
    elseif val == 2
@@ -76,6 +76,8 @@ function [col] = searchCol(val)
        col = 'g';
    elseif val > 6
        col = 'b';
+   else
+       col = 'w';
    end
 
 

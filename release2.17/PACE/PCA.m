@@ -296,7 +296,8 @@ function [no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_x
 %Output xi_est:   n*K matrix, predictions for random coeffecients (PC
 %                 scores) for n subjects.
 %
-%Output xi_var:   K*K matrix, Var(PC score)-Var(estimated PC score). The
+%Output xi_var:   an 1*n cell of K*K matrix, with each entry being 
+%                 Var(PC score)-Var(estimated PC score), the
 %                 omega matrix in equation (7) of the paper, which is used
 %                 to construct the point-wise C.I. for X_i(t)
 %

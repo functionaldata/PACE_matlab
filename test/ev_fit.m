@@ -22,8 +22,8 @@ if (ispc)
     addpath 'D:\Documents\My Documents\Dropbox\Research\PACE_matlab\release2.16\PACE\PACE-FAM'
 end
 if (isunix)
-    addpath '~/PACE_matlab/release2.16/PACE'
-    addpath '~/PACE_matlab/release2.16/PACE/PACE-FAM'
+    addpath '~/PACE_matlab/release2.17/PACE'
+    addpath '~/PACE_matlab/release2.17/PACE/PACE-FAM'
 end
 
 rng(seed);
