@@ -27,8 +27,7 @@ end
 %clear all;
 
 
-
-rand('twister',sum(10000*clock));
+rand(123,'twister');
 ncohort = 80;
 nobs = 50;
 lint_x = 10; 

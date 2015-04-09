@@ -34,8 +34,9 @@ function [invalid, logLik1] = getLogLik1(y,lambda, muSub, phiSub, sigma, regular
            logLik1 = [];
            return;
         end
-        for i = 1:length(y)           
-           logLik1 = log(detSigma_y)+(y{i}-muSub)*pinv(Sigma_y)*(y{i}-muSub)' + logLik1;
+        for i = 1:length(y)
+	   invtempSub = (y{i}-muSub)/(Sigma_y);
+           logLik1 = log(detSigma_y)+invtempSub*(y{i}-muSub)' + logLik1;
         end      
      else
         for i = 1:length(y)
@@ -50,7 +51,8 @@ function [invalid, logLik1] = getLogLik1(y,lambda, muSub, phiSub, sigma, regular
              logLik1 = [];
              return;
            else
-             logLik1 = logLik1+log(detSigma_y)+(y{i}-mu_i)*pinv(Sigma_y)*(y{i}-mu_i)'; 
+	     invtempi = (y{i}-mu_i)/(Sigma_y);
+             logLik1 = logLik1+log(detSigma_y)+invtempi*(y{i}-mu_i)'; 
            end
         end
      end

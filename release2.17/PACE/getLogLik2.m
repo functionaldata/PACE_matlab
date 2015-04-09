@@ -33,7 +33,7 @@ if regular == 2 && strcmp(method,'CE')
       phiSub = phiSub(:,1:k);
       yy= reshape(cell2mat(y), length(y{1}), length(y))';
       error0 = sigma*eye(length(t{1}));
-      A = LAMBDA*phiSub'*pinv(phiSub*LAMBDA*phiSub'+error0);
+      A = (LAMBDA*phiSub’)/(phiSub*LAMBDA*phiSub'+error0);
       MU = repmat(muSub, length(y),1);
       B = yy-MU;
       xi_est = (A*B')';
@@ -58,7 +58,7 @@ else
          yi = y{i};
          if strcmp(method,'CE')
             error0=sigma*eye(length(yi));
-            A = LAMBDA*phii'*pinv(phii*LAMBDA*phii'+error0);
+            A = (LAMBDA*phii’)/(phii*LAMBDA*phii'+error0);
             xi_est=(A*(yi-mu_i)')'; 
          elseif strcmp(method, 'IN')
             m=length(yi); 

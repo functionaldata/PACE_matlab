@@ -12,7 +12,7 @@ isExist = regexp(p, 'PACE');
 if isempty(isExist) == 1
   addpath(genpath('../PACE/'));
 end
-rand('twister',sum(10000*clock));
+rand(123,'twister');
 mtp = 21;        %21 repeated measurements in the simulated data
 ncohort=200;     %200 subjects in the simulated data
 lint=10;

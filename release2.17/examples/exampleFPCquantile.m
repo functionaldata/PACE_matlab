@@ -13,7 +13,7 @@ end
 
 n = 200;
 npred = 50;
-rand('twister',sum(10000*clock));
+rand(123,'twister');
 
 numK = 4; % true number of components used to generate data
 x =cell(1,n);

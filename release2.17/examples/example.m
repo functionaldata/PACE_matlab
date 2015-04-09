@@ -15,7 +15,7 @@ isExist = regexp(p, 'PACE');
 if isempty(isExist) == 1
   addpath(genpath('../PACE/'));
 end
-rand('twister',sum(10000*clock));
+rand(123,'twister');
 mtp = 4;          %at most 4 repeated measurements in the simulated data for the sparse case
 %mtp = 20;        %20 repeated measurements in the simulated data for
                   %regular and regular with missing cases

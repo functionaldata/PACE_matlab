@@ -65,7 +65,7 @@ for i=1:m
         %XX=sqrt(W)*X;
         %YY=sqrt(W)*ly;
         %beta=XX\YY;
-        beta=pinv(X'*W*X)*X'*W*ly;
+        beta=(X’*W*X)\(X’*W*ly);
         mu(i)=beta(1);
         % if there is only observation in local window, take this value as estimate 
     elseif length(ly)==1

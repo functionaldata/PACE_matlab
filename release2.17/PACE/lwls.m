@@ -104,7 +104,7 @@ function [invalid,mu]=lwls(bw,kernel,nwe,npoly,nder,xin,yin,win,xou, bwmuLocal)
            %dxx=sqrt(W)*dx;
            %lyy=sqrt(W)*ly;
            %p=dxx\lyy;
-           p=pinv(dx'*W*dx)*dx'*W*ly;
+           p=(dx'*W*dx)\(dx'*W*ly);
       
            % Find estimate  
            mu(i)=p(nder+1)*factorial(nder)*((-1)^nder);

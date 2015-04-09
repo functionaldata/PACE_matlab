@@ -33,7 +33,7 @@ for i=1:length(out2)
   ly=yin(ind); 
   lw=win(ind);
   % computing weight matrix 
-  if length(unique(lx','rows'))>=3
+  if ( (length(unique(lx(:)))>=6) || (length(unique(lx','rows'))>=3 ))
    llx=[(lx(1,:)-out1(j))./bw(1);(lx(2,:)-out2(i))./bw(2)];
    % deciding the kernel used
    k=size(llx,2);
@@ -63,7 +63,7 @@ for i=1:length(out2)
    else
      W1 = W;
    end   
-   beta=pinv(X'*W1*X)*X'*W*ly;
+   beta=(X'*W1*X)\(X'*W*ly);
    clear X W W1;
    mu(i,j)=beta(1);
    %gap(i,j)=0;
