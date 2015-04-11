@@ -899,7 +899,7 @@ if strcmp(method_mu,'RARE') == 1    % this part modified by Wenwen
     W = blkdiag(W{:});
     tty = cell2mat(tnew);  % t=> tnew, by Wenwen
     Y = cell2mat(ynew)'-interp1(out1,mu,tty,'spline')'; % r.h.s y=> ynew
-    b = (X’*W*X)\(X’*W*Y);
+    b = (X'*W*X)\(X'*W*Y);
     b = reshape(b,no_opt,no_opt+1)';
         
     phi_YDense = eigen(:,1:no_opt);

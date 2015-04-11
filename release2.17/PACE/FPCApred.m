@@ -83,7 +83,7 @@ function [xi_est, xi_var,y_predOrig]=getXI(y, t, mu, phi, lambda, sigma, sigma_n
          yy= reshape(cell2mat(y), length(y{1}), ncohort)';
  
          error0 = sigma1*eye(length(t{1}));
-         A = (LAMBDA*phiSub’)/(phiSub*LAMBDA*phiSub'+error0);
+         A = (LAMBDA*phiSub')/(phiSub*LAMBDA*phiSub'+error0);
          MU = repmat(muSub, ncohort,1);
          B = yy-MU;
          xi_est = (A*B')';
@@ -109,7 +109,7 @@ function [xi_est, xi_var,y_predOrig]=getXI(y, t, mu, phi, lambda, sigma, sigma_n
 	        yi= y{i};
 	        if strcmp(method,'CE')              
                   error0=sigma1*eye(length(yi));
-		  A = (LAMBDA*phii’)/(phii*LAMBDA*phii'+error0);
+		  A = (LAMBDA*phii')/(phii*LAMBDA*phii'+error0);
                   xi_est(i,:)=(A*(yi-mu_i)')';
                   xi_var{i}=LAMBDA-A*(LAMBDA*phii')';
 	        elseif strcmp(method,'IN')
@@ -132,7 +132,7 @@ function [xi_est, xi_var,y_predOrig]=getXI(y, t, mu, phi, lambda, sigma, sigma_n
   elseif error==0 
       if regular == 2 && strcmp(method ,'CE')
           yy= reshape(cell2mat(y), length(y{1}), ncohort)';
-          A = (LAMBDA*phiSub’)/(phiSub*LAMBDA*phiSub');
+          A = (LAMBDA*phiSub')/(phiSub*LAMBDA*phiSub');
           MU = repmat(muSub, ncohort,1);
           B = yy-MU;
           xi_est = (A*B')';
@@ -154,7 +154,7 @@ function [xi_est, xi_var,y_predOrig]=getXI(y, t, mu, phi, lambda, sigma, sigma_n
              end
 	         yi= y{i};
 	         if strcmp(method,'CE')
-			 A = (LAMBDA*phii’)/(phii*LAMBDA*phii');
+			 A = (LAMBDA*phii')/(phii*LAMBDA*phii');
 		         xi_est(i,:)=(A*(yi-mu_i)')';
 		         xi_var{i}=LAMBDA-A*(LAMBDA*phii')';
 	         elseif strcmp(method,'IN')
