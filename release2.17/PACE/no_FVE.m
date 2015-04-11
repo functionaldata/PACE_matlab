@@ -22,9 +22,9 @@ function [no_opt, FVE, lambda] = no_FVE(xcov, FVE_threshold, varargin)
 
      %[u d eigen] = svds(xcov, size(xcov,1), 'L');  %obtain ngrid * 1 eigenvalues
      opts.disp = 0;
-     opts.v0 = linspace(0.1,0.9,numGrids);
-     numGrids = size(xcov,1)-2;
-     d = eigs(xcov,numGrids,'lm',opts);          %at most ngrid - 2 eigenvalues can be obtained 
+     numGrids = size(xcov,1);     
+     opts.v0 = linspace(0.1,0.9,numGrids)';
+     d = eigs(xcov,numGrids-2,'lm',opts);          %at most ngrid - 2 eigenvalues can be obtained 
                                               %for nonsymmetric and complex problems
      idx = find(imag(d));                    %remove any imaginary eigenvalues
      if isempty(idx) == 0

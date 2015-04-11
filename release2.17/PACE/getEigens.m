@@ -5,7 +5,7 @@ h=range(out21)/(length(out21)-1);
 %[u d eigen]=svds(xcov,noeig,'L');  %it always results in positive eigenvalues
 opts.disp = 0;  %don't show the intermediate steps
 ngrid = size(xcov,1);
-opts.v0 = linspace(0.1, 0.9, ngrid-2); % specify a fixed starting vector
+opts.v0 = linspace(0.1, 0.9, ngrid)'; % specify a fixed starting vector
 
 [eigen d] = eigs(xcov,ngrid-2,'lm',opts);
 
