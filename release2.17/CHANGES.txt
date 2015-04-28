@@ -3,7 +3,15 @@ New in PACE version 2.17:
 ==========================
 (1) A new method for estimating the eigenvalues under the sparse case (regular=0) is added. This method uses the eigenfunctions obtained by smoothing the covariance matrix, and then uses least squares to regress the raw covariance on the eigenfunctions. 
 
-(2) Some minor bugs are fixed
+(2) A new subroutine PACE-kcfc that is used for functional clustering is included.
+
+Reference: Chiou, J.M. and Li, P.L. (2007). Functional clustering and identifying substructures of longitudinal data[J]. Journal of the Royal Statistical Society: Series B (Statistical Methodology), 69(4): 679-699.
+
+(3) Some minor bugs are fixed for subroutines PACE-mani and PACE-GFLM
+
+(4) All 'pinv' in base PACE have been replaced by either 'mldivide' or 'mrdivide' for enhanced efficiency. (Files involved: PCA.m, rotate_mlwls.m, FPCApred.m, getLogLik1.m, getLogLik2.m, getOriCurves.m, getScores1.m, getScores2.m, lwls.m, mullwlsk.m)
+
+(5) Minor color issue in designPlot() is fixed.
 
 ==========================
 New in PACE version 2.16:

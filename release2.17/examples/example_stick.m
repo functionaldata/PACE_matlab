@@ -27,7 +27,7 @@ end
 %clear all;
 
 
-rand(123,'twister');
+rng(123, 'twister');
 ncohort = 80;
 nobs = 50;
 lint_x = 10; 

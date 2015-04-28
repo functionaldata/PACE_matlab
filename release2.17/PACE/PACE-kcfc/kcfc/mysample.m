@@ -21,7 +21,7 @@ function [y] = mysample(x,n, withReplace)
      elseif nargin < 3
         withReplace = 1;
      end
-     rand('twister',sum(10000*clock));
+     rng('twister',sum(10000*clock));
      if n <= 0 
         error('n must be a positive integer!');
      elseif n > length(x) && withReplace == 0

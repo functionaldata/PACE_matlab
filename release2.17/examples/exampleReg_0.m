@@ -13,7 +13,7 @@ if isempty(isExist) == 1
 addpath(genpath('../PACE/'));
 end
 
-rand(123,'twister');
+rng(123, 'twister');
 ncohort = 300;
 npred = 100;
 lint_x = 10; lint_y = 5;

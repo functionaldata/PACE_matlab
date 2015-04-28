@@ -76,6 +76,8 @@ function [col] = searchCol(val)
        col = 'g';
    elseif val > 6
        col = 'b';
+   else
+       col = 'w';
    end
 
 
