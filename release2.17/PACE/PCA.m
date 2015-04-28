@@ -107,10 +107,15 @@ function [no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_x
 %                         K after viewing scree plot. This can be combined
 %                         with any setting of selection_k.
 %
-%Input regular:   0, sparse (or irregular) functional data.      
-%                 1, regular data with missing values
-%                 2, completely balanced (regular) data.
-%                 [], automatically chosen based on the design in t.   [Default]
+%Input regular:   0, sparse (or irregular) functional data. 
+%                 1, regular data with missing values                 
+%                 2, completely balanced (regular) data.                 
+%                 3, completely balanced (regular) data. In  addition, the
+%                 input needs to be smooth functions already. Within this
+%                 setting no smoothing procedure will be
+%                 applied.                     
+%                 [], automatically chosen based on the design in t.
+%                 [Default]
 %
 %Input error:     0, no additional measurement error assumed.
 %                 1, additional measurement error is assumed.    [Default]
