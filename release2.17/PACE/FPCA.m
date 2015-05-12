@@ -23,26 +23,29 @@
 %
 function [X] = FPCA(y,t,p)
 
-  if nargin == 2
-    p = setOptions();
-  end
- %addpath('./PACE');
-  if isempty(p.yname)
-     p.yname = inputname(1);
-  end
-  if p.regular ~=3
-	[no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_xcov,xcovfit,AIC,BIC,FVE,y_pred,y_predOrig,y_predDense,out1,...
-		out21,y,t, regular, rho_opt, sigmanew, mucopy, phicopy, eigencopy, out1copy, out21copy, xcovcopy, xcovfitcopy, xcorr, ops]...
-		=PCA(y,t,p.bwmu, p.bwmu_gcv,p.bwxcov, p.bwxcov_gcv,p.ntest1,p.ngrid1,p.selection_k, p.FVE_threshold, p.maxk,...
-		p.control,p.regular,p.error,p.ngrid,p.method, p.ls_fit, p.shrink,p.newdata, p.kernel, p.numBins, p.yname, p.screePlot, p.designPlot, p.corrPlot, p.rho, p.verbose, p.xmu,p.xcov, p.method_mu, p.out_percent);
-	else
-	%reshape the input to matrix form
-		t = t{1};
-		y = y';
-		y = cell2mat(y);
-		[no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_xcov,xcovfit,AIC,BIC,FVE,y_pred,y_predOrig,y_predDense,out1,...
-		out21,y,t, regular, rho_opt, sigmanew, mucopy, phicopy, eigencopy, out1copy, out21copy, xcovcopy, xcovfitcopy, xcorr, ops] = FPCA_ku(t,y,p.selection_k,p.FVE_threshold);
-	end
+if nargin == 2
+p = setOptions();
+end
+%addpath('./PACE');
+if isempty(p.yname)
+ p.yname = inputname(1);
+end
+if p.regular == 3
+    %reshape the input to matrix form
+    t = t{1};
+    y = y';
+    y = cell2mat(y);
+    [no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_xcov,xcovfit,AIC,BIC,FVE,y_pred,y_predOrig,y_predDense,out1,...
+    out21,y,t, regular, rho_opt, sigmanew, mucopy, phicopy, eigencopy, out1copy, out21copy, xcovcopy, xcovfitcopy, xcorr, ops] = FPCA_ku(t,y,p.selection_k,p.FVE_threshold);
+
+else
+    [no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_xcov,xcovfit,AIC,BIC,FVE,y_pred,y_predOrig,y_predDense,out1,...
+    out21,y,t, regular, rho_opt, sigmanew, mucopy, phicopy, eigencopy, out1copy, out21copy, xcovcopy, xcovfitcopy, xcorr, ops]...
+    =PCA(y,t,p.bwmu, p.bwmu_gcv,p.bwxcov, p.bwxcov_gcv,p.ntest1,p.ngrid1,p.selection_k, p.FVE_threshold, p.maxk,...
+    p.control,p.regular,p.error,p.ngrid,p.method, p.ls_fit, p.shrink,p.newdata, p.kernel, p.numBins, p.yname, p.screePlot, p.designPlot, p.corrPlot, p.rho, p.verbose, p.xmu,p.xcov, p.method_mu, p.out_percent);
+
+end
+
 Xnames = {'no_opt','sigma','lambda','phi','eigen','xi_est','xi_var','mu','muDense','bw_mu','xcov','bw_xcov','xcovfit',...
 	  'AIC','BIC','FVE','y_pred','y_predOrig','y_predDense','out1','out21', 'y','t','regular','rho_opt', 'sigmanew'...
 	  'mucopy', 'phicopy','eigencopy','out1copy', 'out21copy', 'xcovcopy', 'xcovfitcopy','xcorr','ops', 'names'};
