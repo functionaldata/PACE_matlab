@@ -18,7 +18,8 @@ end
 
 if isempty(h0)
   fprintf(1,'Error: the data is too sparse, no suitable bandwidth can be found! Try Gaussian Kernel instead!\n');                             
-  bw_xcov = []; gcv = [];                                                                                                                             
+  bw_xcov = []; gcv = [];
+
   return;           
 end
 
@@ -60,7 +61,7 @@ clear out1;
 %dstar = minb(tpairn(1,:),10);
 %h0 = sqrt(2.5*dstar/range(tpairn(1,:)));
 
-h0 = min(h0, r);
+h0 = min(h0, r / 4);
 q = (r/(4*h0))^(1/9);
 bw = q.^(0:9).*h0;        %create 10 h candidates
 %fprintf(1, 'bwxcov candidates:\n')
