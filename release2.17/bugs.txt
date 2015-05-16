@@ -13,8 +13,6 @@ TODO:
         kernel, 'numBins',0,'newdata',out1,'error', error_type,'screePlot',0, ...
         'rho', rho, 'ngrid', ngrid, 'verbose', verbose);
 		
-% ?: The scores obtained by FPCA do not agree with those obtained by getScores
+% rotate_mlwls produces negative diagonal estimate using rotateBug.mat. Probably this is because the data is too sparse (banded structure in the design plot).
 
-% The lwls function should not restrict xou to be sorted
-
-
+% bandwidth selcector cannot handle integer valued time point input
