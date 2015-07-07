@@ -13,6 +13,7 @@ TODO:
         kernel, 'numBins',0,'newdata',out1,'error', error_type,'screePlot',0, ...
         'rho', rho, 'ngrid', ngrid, 'verbose', verbose);
 		
-% rotate_mlwls produces negative diagonal estimate using rotateBug.mat. Probably this is because the data is too sparse (banded structure in the design plot).
-
 % bandwidth selcector cannot handle integer valued time point input
+
+% When method='CE', error=0, getScores1 does not spit out a warning or error
+% even when Sigma_Yi is near singular

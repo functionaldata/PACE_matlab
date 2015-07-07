@@ -1,8 +1,10 @@
 %function [newy] = mapX1d(x,y,newx)
 %Map (x,y) to (newx,newy)
-%x, y : vectors of 1 * n
+%x    : a vector of 1 * n
+%y    : a vector of 1 * n or a n * p matrix
 %newx : vector of 1 * m
-%newy : vector of 1*m
+%newy : vector of 1 * m or a matrix of m * p
+
 function [newy] = mapX1d(x,y,newx)
 
 %      [ignore, loc] = ismember(newx, x);
