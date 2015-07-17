@@ -48,7 +48,6 @@ function [no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_x
 	[p lam] = eig(M);
 	[lam, ord] = sort(diag(lam), 'descend');
 	p = p(:, ord);
-	lam = lam /n; % divided by subject number 
 	cumlam = cumsum(lam)/sum(lam);
 	ind_k = find(cumlam>FVE_threshold);
 	ind_k = ind_k(1);  % the smallest # of components  
@@ -58,6 +57,7 @@ function [no_opt,sigma,lambda,phi,eigen,xi_est,xi_var,mu,muDense,bw_mu,xcov,bw_x
 	
 	xi = p(:, 1:K)*sqrt(diag(lam(1:K)));
 	phi = zeros(K, m);
+	lam = lam /n; % divided by subject number 
 	
 	%transform back the eigenfunction corresponding to original data
 	for r = 1:K
