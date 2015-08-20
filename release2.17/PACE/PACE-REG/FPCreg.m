@@ -384,6 +384,7 @@ function [res, xx, yy] = FPCreg(x, t_x, y, t_y, param_X, param_Y, FIT, K_x, K_y,
     
    [BETA,b] = getBeta(xx, yy, y, t_y, isYFun, K_x, K_y, method);
    
+   newcb = [];
    if ~isempty(newx)
        [ypred, newxscore] =  FPCApred(xx, newx, new_tx);
        clear ypred;
@@ -393,10 +394,10 @@ function [res, xx, yy] = FPCreg(x, t_x, y, t_y, param_X, param_Y, FIT, K_x, K_y,
    
    pc_x = getVal(xx,'xi_est');
    pc_x = pc_x(:,1:K_x);
-   out1_y = getVal(yy,'out1');
    nsub_y = length(y);
    if isYFun==1       
 %        fitted_y = predict(pc_x,y,yy,t_y,b,isYFun,K_x,K_y,method);
+       out1_y = getVal(yy,'out1');
        [fitted_y fitted_cb]= predict(pc_x,t_x,xx,y,yy,mat2cell(repmat(out1_y,nsub_y,1),ones(1,nsub_y))',b,isYFun,K_x,K_y,method,alpha);
        fitted_y1 = cell(1,nsub_y);
        for i = 1:nsub_y
