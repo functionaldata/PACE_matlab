@@ -269,7 +269,7 @@ function [res, xx] = FPCQuadReg(x, t_x, y, param_X, K, isNewSub)
    for k=1:K
        for l=1:k
            C_kl=C_kl+1;
-           gammafun=gammafun+gamma(C_kl)*phi_K(:,k)*phi_K(:,l)';
+           gammafun=gammafun+.5*gamma(C_kl)*(phi_K(:,k)*phi_K(:,l)' + phi_K(:,l)*phi_K(:,k)');
        end
    end
    coeffFunNames={'betafun','gammafun','grid'};
