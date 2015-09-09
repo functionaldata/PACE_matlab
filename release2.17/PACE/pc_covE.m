@@ -62,7 +62,7 @@ win1=ones(1,length(cxx));
       end
    end
    if sigma < 0
-	fprintf(1, 'Warning: estimated sigma is negative, reset to zero now!\n'); 
-        sigma = 0;
+	fprintf(1, 'Warning: estimated sigma is negative, reset to a 1e-6 now!\n'); 
+        sigma = 1e-6;
    end
 end
