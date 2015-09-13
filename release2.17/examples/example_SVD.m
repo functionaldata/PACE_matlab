@@ -16,7 +16,7 @@ end
 
 rng(123, 'twister');
 ncohort = 100;
-lint_x = 10; lint_y = 5;
+lint_x = 10; lint_y = 15;
 x = cell(1,ncohort); t_x = cell(1,ncohort);
 y = cell(1,ncohort); t_y = cell(1,ncohort);
 
