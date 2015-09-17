@@ -22,7 +22,7 @@ function [y] = mysample(x,n, withReplace)
         withReplace = 1;
      end
      %rng('twister',sum(10000*clock));
-     rng(123, 'twister');
+     %rng(123, 'twister');
      if n <= 0 
         error('n must be a positive integer!');
      elseif n > length(x) && withReplace == 0
