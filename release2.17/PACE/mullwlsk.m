@@ -23,9 +23,8 @@ for i=1:length(out2)
  for j=i:length(out1)
   % locating local window
   if strcmp(kernel,'gauss') ~= 1      %when it is not gaussian kernel, look for the grids that have domain -1 and 1
-    list1=find(xin(1,:)>=out1(j)-bw(1)-10^(-6)&xin(1,:)<=out1(j)+bw(1)+10^(-6));
-    list2=find(xin(2,:)>=out2(i)-bw(2)-10^(-6)&xin(2,:)<=out2(i)+bw(2)+10^(-6));
-    ind=intersect(list1,list2);
+    ind=find(abs(xin(1,:) - out1(j)) <= bw(1) + 10^(-6) & ...
+             abs(xin(2,:) - out2(i)) <= bw(2) + 10^(-6));
   else
      ind = 1:size(xin,2);
   end
