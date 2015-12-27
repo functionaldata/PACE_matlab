@@ -26,7 +26,7 @@ end
 if invalid == 1
     return;
 end
-
+bwccov
 
 ccov=ccov_s';
 
@@ -100,7 +100,7 @@ function factor=bwfactor(t1,t2)
     if nmean > 20 %dense
         factor = 1.2;
     else
-        factor = interp1([2 20], [1 1], nmean);
+        factor = interp1([1 20], [1 1], nmean);
     end
 
 end

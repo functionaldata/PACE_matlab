@@ -63,7 +63,7 @@ for i=1:length(out2)
    else
      W1 = W;
    end   
-   beta=pinv(X'*W1*X)*X'*W*ly;
+   beta=(X'*W1*X)\(X'*W*ly);
    clear X W W1;
    mu(i,j)=beta(1);
    %gap(i,j)=0;
