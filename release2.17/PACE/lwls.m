@@ -36,10 +36,21 @@ function [invalid,mu]=lwls(bw,kernel,nwe,npoly,nder,xin,yin,win,xou, bwmuLocal)
       return;   
    end   
    
+   win( isnan(xin) ) = 0;
+   win( isnan(yin) ) = 0;
+   
+   
    actobs=find(win~= 0);
+   
+   xinold = xin;
+   winold = win;
+   yinold = yin;
+   
    xin=xin(actobs);
    yin=yin(actobs);
    win=win(actobs);
+   
+   
    invalid=0;
    % define the multiple of bandwidth
    aa=1;   
@@ -108,6 +119,9 @@ function [invalid,mu]=lwls(bw,kernel,nwe,npoly,nder,xin,yin,win,xou, bwmuLocal)
       
            % Find estimate  
            mu(i)=p(nder+1)*factorial(nder)*((-1)^nder);
+           if( isnan(mu(i)) )
+               fprintf(1,'NaN in the generated values. Consider increasing the bandwidth use!\n');
+           end
            gap(i)=0;
            %elseif npoly==1&length(unique(ly))==1&nder==0
            % mu(i)=unique(ly);
