@@ -26,7 +26,6 @@ end
 if invalid == 1
     return;
 end
-bwccov
 
 ccov=ccov_s';
 
