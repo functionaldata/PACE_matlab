@@ -1,3 +1,9 @@
+# Project specific
+release2.16/
+test/
+testData/
+*.dat
+
 #################
 ## Eclipse
 #################
