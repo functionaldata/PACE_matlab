@@ -2,6 +2,7 @@
 release2.16/
 test/
 testData/
+gene.dat
 # *.dat
 #################
 ## Eclipse

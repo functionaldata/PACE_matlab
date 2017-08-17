@@ -1,11 +1,12 @@
 % Example: Berkeley Growth Data
 % Method: K-center Functional Data Clustering (KCFC) 
 %
-% Last modified: 2015/3/5 by Pai-Ling Li
+% Last modified: 2015/3/5 by Pai-Ling Li, before version controlled by git
 
-clear all;%clc
+% clear all;%clc
 % addpath(genpath('69p4Chiou'))
 % addpath(genpath('kcfc-PACE215'))
+addpath(genpath('../PACE/'));
 
 % -------------------------------------------------------------------------
 % I n p u t  D a t a 
