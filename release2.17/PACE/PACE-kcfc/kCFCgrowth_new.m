@@ -5,7 +5,7 @@
 
 clear all;%clc
 % addpath(genpath('69p4Chiou'))
-addpath(genpath('kcfc-PACE215'))
+% addpath(genpath('kcfc-PACE215'))
 
 % -------------------------------------------------------------------------
 % I n p u t  D a t a 

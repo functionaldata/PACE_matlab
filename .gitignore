@@ -2,7 +2,7 @@
 release2.16/
 test/
 testData/
-*.dat
+# *.dat
 #################
 ## Eclipse
 #################
