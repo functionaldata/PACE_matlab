@@ -132,6 +132,11 @@ function [yy] = FPCgrm(y,t,p)
     if strcmp(p.verbose, 'on') == 1
         fprintf(1,'Part I: Obtain smoothed mean functions\n');
     end
+    
+    if isempty(p.regular)||~any(p.regular==0:2)
+        p.regular = isregular(t);
+    end
+    
     [ymu,bw_mu,xmu,out1] = grm_mu_NP(y,t,p.family,p.param,p.kernel,p.bwmu,...
         p.bwmu_gcv,p.regular,p.verbose);
     
