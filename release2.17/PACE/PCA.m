@@ -686,7 +686,7 @@ if strcmp(verbose, 'on') == 1
 end
 rcov = getRawCov(y,t,out1,mu, regular, 0);           %obtain raw covariance;
 
-if ~isempty(xcov)&&(length(xcov)==ngrid^2)
+if ~isempty(xcov) && isequal(size(xcov), [ngrid, ngrid])
     if length(bwxcov)>1 && bwxcov(1)>0 && bwxcov(2)>0
         bw_xcov=bwxcov;
     else

@@ -1,3 +1,8 @@
+Bug fixes:
+
+- PCA.m: Now one can correctly specify user covariance (xcov in setOptions)
+- FPCgrm.m: Now irregularity of the input time points is automatically determined.
+
 ==========================
 New in PACE version 2.17:
 ==========================
