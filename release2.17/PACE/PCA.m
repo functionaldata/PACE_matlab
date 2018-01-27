@@ -787,12 +787,12 @@ end
 no_optCopy = no_opt;
 
 % This part modified by Cong (Start) 10/05/2012
-pc_options = {'AIC','BIC','FVE','user','AIC_R'};
+pc_options = {'AIC1','BIC1','FVE','user','AIC_R'};
 AIC = [];
 BIC = [];
 
 if ischar(selection_k)
-    k_id = strmatch(selection_k, pc_options,'exact');
+    k_id = strmatch(selection_k, pc_options);
     if isempty(k_id)
        fprintf(1,['Warning: Invalid method name for selection_k! Reset to "FVE" method with threshold = ' num2str(FVE_threshold) '\n']);
        k_id = 3;
