@@ -87,10 +87,10 @@ function [cb grid_x grid_y] = getCB(res, xx, yy, K_x, K_y, alpha)
             end
         end
         
-        surf(grid_x,grid_y,cb(:,:,1));
+        surf(grid_x,grid_y,cb(:,:,1)');
         hold on;
-        surf(grid_x,grid_y,cb(:,:,2));
-        surf(grid_x,grid_y,getVal(getVal(res,'BETA'),'beta'));
+        surf(grid_x,grid_y,cb(:,:,2)');
+        surf(grid_x,grid_y,getVal(getVal(res,'BETA'),'beta')');
         hold off;
         xlabel('x');
         ylabel('y');

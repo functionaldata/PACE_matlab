@@ -365,10 +365,10 @@ function [res xx yy h d rej pv cb grid_x grid_y Qsim] = FPCdiag(x, t_x, y, t_y, 
                 end
             end
             
-        surf(grid_x(bselx),grid_y(bsely),cb(:,:,1));
+        surf(grid_x(bselx),grid_y(bsely),cb(:,:,1)');
         hold on;
-        surf(grid_x(bselx),grid_y(bsely),cb(:,:,2));
-        surf(grid_x(bselx),grid_y(bsely),beta(bselx,bsely));
+        surf(grid_x(bselx),grid_y(bsely),cb(:,:,2)');
+        surf(grid_x(bselx),grid_y(bsely),beta(bselx,bsely)');
         hold off;
         xlabel('x');
         ylabel('y');
